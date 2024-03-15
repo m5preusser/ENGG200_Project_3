@@ -1,14 +1,11 @@
-# questionnaire.py file
+# Question Tree File
 
 class Questionnaire:
 
-    def questionnaire(self):
+    def questionnaire(button_yes, button_no):
+        #Goes through the questionnaire tree
 
-        button_yes = machine.Pin(1,machine.Pin.IN, machine.Pin.PULL_UP)
-        button_no = machine.Pin(1,machine.Pin.IN, machine.Pin.PULL_UP)
-
-    def question_1(button_yes, button_no):
-        # Prints question to screen
+    def button_input(button_yes, button_no):
         wait = True
         response = ""
         while wait == True:
@@ -21,7 +18,6 @@ class Questionnaire:
                 response = "no"
             if button_off.value() != 1:
                 wait = False
-                # Print to screen "off"
+                response = "off"
 
         return response
-    
