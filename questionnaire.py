@@ -1,23 +1,32 @@
 # Question Tree File
 
-class Questionnaire:
+button_yes = None
+button_no = None
+button_off = None 
 
-    def questionnaire(button_yes, button_no):
-        #Goes through the questionnaire tree
+def __init__(self, button_1, button_2, button_3):
+    button_yes = button_1
+    button_no = button_2
+    button_off = button_3
 
-    def button_input(button_yes, button_no):
-        wait = True
-        response = ""
-        while wait == True:
+def questionnaire():
+    pass
+    #Goes through the questionnaire tree
 
-            if button_yes.value() != 1:
-                wait = False
-                response = "yes"
-            if button_no.value() != 1:
-                wait = False
-                response = "no"
-            if button_off.value() != 1:
-                wait = False
-                response = "off"
+def button_input(button_yes, button_no):
+    wait = True
+    response = ""
+    while wait == True:
 
-        return response
+        if button_yes.value() != 1:
+            wait = False
+            response = "yes"
+        if button_no.value() != 1:
+            wait = False
+            response = "no"
+        if button_off.value() != 1:
+            wait = False
+            response = "off"
+
+    return response
+    
