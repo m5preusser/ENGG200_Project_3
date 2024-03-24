@@ -11,9 +11,13 @@ def set_time():
         if key == "minute":
             global set_minute
             set_minute = value
+    global hour_offset
+    hour_offset = time.localtime()[3]
+    global minute_offset
+    minute_offset = time.localtime()[4]
 
 def hour():
-    return time.localtime()[3] + set_hour
+    return (time.localtime()[3] + set_hour - hour_offset + (set_minute - minute_offset) // 60) % 24
     
 def minute():
-    return time.localtime()[4] + set_minute   
+    return (time.localtime()[4] + set_minute - minute_offset)%60   
