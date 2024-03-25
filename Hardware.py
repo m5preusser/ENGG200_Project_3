@@ -22,6 +22,9 @@ clock = tm1637.TM1637(clk=Pin(5), dio=Pin(4))
 # thermometer
 thermometer = DHT11(Pin(22))
 
+# Motion Sensor
+motion_sensor = Pin(3, Pin.IN, Pin.PULL_DOWN)
+
 
 def button_input():
     if yes_button.value() == 0:
@@ -50,7 +53,6 @@ def display_time():
     current_hour = get_time.hour()
     current_minute = get_time.minute()
     clock.numbers(current_hour, current_minute)
-    print(f'{current_hour}:{current_minute}')
     pass
 
 def get_temp():
@@ -60,3 +62,10 @@ def get_temp():
 def get_humidity():
     thermometer.measure()
     return thermometer.humidity
+
+def get_motion():
+    if motion_sensor.value() == 1:
+        return True
+    
+    else:
+        return False
