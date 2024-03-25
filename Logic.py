@@ -10,6 +10,7 @@ path = None
 spi = SPI(1, baudrate=40000000, sck=Pin(14), mosi=Pin(15))
 display = Display(spi, dc=Pin(6), cs=Pin(17), rst=Pin(7))
 temperature = ""
+time = ""
 
 def main(self):
     
@@ -91,29 +92,29 @@ def question_2():
 def question_3():
     
     if path == "00":
-        question = ""
+        question = "I always like telling jokes, here's one. Why don't skeletons fight each other? Becuase they don't have the guts! Would you like to hear another?"
         display_text(question)
         response = button_input()
 
         if response == "yes":
-            terminating_statement = ""
+            terminating_statement = "What's the last thing to go through a flies head before it hits the fly swatter? Its bum. Thanks for speaking with me today!"
             display_text(terminating_statement)
         elif response == "no":
-            terminating_statement = ""
+            terminating_statement = "That's alright, one joke is enough for today. Thanks for the chat!"
             display_text(terminating_statement)
         else:
             pass
     
     elif path == "01":
-        question = ""
+        question = "That's alright, sometimes you're not in the mood for jokes. Would you like some current information?"
         display_text(question)
         response = button_input()
 
         if response == "yes":
-            terminating_statement = ""
+            terminating_statement = "It is currently " + time + " and the ambient temperature is " + temperature + "."
             display_text(terminating_statement)
         elif response == "no":
-            terminating_statement = ""
+            terminating_statement = "I hope I provided some emotional support today. It's always good to talk to someone."
             display_text(terminating_statement)
         else:
             pass
@@ -135,21 +136,21 @@ def question_3():
                 terminating_statement = "I would recommend having something to eat and drinking some water. Carbohydrates such as toast or bananas are best for digestion. If your headache persists, I would suggest you call a nurse for help"
 
         elif response == "no":
-            question = ""
+            question = "If you're in any kind of significant anguish, I would highly reccomend calling a nurse. I am unfortunately limited in my ability to help physically."
             display_text(terminating_statement)
         else:
             pass
 
     elif path == "11":
-        question = ""
+        question = "That's good to hear at least. Are you in any emotional anguish?"
         display_text(question)
         response = button_input()
 
         if response == "yes":
-            terminating_statement = ""
+            terminating_statement = "Remember to drink and eat enough food and water throughout your day. That will help you keep your energy up!"
             display_text(terminating_statement)
         elif response == "no":
-            terminating_statement = ""
+            terminating_statement = "I won't be able to help you with much else. If you need something, I would reccomend calling a nurse. If not, try calling some family, social interaction can help your mental health."
             display_text(terminating_statement)
         else:
             pass
