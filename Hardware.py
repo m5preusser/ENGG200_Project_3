@@ -1,9 +1,10 @@
 from time import sleep
 import get_time
 from ili9341 import Display, color565
-from machine import Pin, SPI
+from machine import Pin, SPI, I2C
 from xglcd_font import XglcdFont
 import tm1637
+from dht import DHT11, InvalidChecksum
 
 # Buttons
 yes_button = Pin(0, Pin.IN, Pin.PULL_UP)
@@ -17,6 +18,10 @@ broadway = XglcdFont('Broadway17x15.c', 17, 15)
 
 # Clock
 clock = tm1637.TM1637(clk=Pin(5), dio=Pin(4))
+
+# thermometer
+thermometer = DHT11(Pin(22))
+
 
 def button_input():
     if yes_button.value() == 0:
@@ -48,3 +53,10 @@ def display_time():
     print(f'{current_hour}:{current_minute}')
     pass
 
+def get_temp():
+    thermometer.measure()
+    return thermometer.temperature
+
+def get_humidity():
+    thermometer.measure()
+    return thermometer.humidity

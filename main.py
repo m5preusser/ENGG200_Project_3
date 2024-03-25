@@ -11,7 +11,9 @@ def main():
     Setup.setup()
     Setup.connect()
     get_time.set_time()
-    
+    time.sleep(2)
+    print(Hardware.get_temp())
+    print(Hardware.get_humidity())
 
     while True:
         Hardware.display_text(Hardware.button_input())
