@@ -1,13 +1,14 @@
 from time import sleep
 import get_time
 from ili9341 import Display, color565
-from machine import Pin, SPI, I2C
+from machine import Pin, SPI, ADC
 from xglcd_font import XglcdFont
 import tm1637
 from dht import DHT11, InvalidChecksum
+from neopixel import Neopixel
 
 # Buttons
-yes_button = Pin(0, Pin.IN, Pin.PULL_UP)
+yes_button = Pin(12, Pin.IN, Pin.PULL_UP)
 no_button = Pin(1, Pin.IN, Pin.PULL_UP)
 off_button = Pin(2, Pin.IN, Pin.PULL_UP)
 
@@ -24,6 +25,13 @@ thermometer = DHT11(Pin(22))
 
 # Motion Sensor
 motion_sensor = Pin(3, Pin.IN, Pin.PULL_DOWN)
+
+# Photoresistor
+photoresitor = ADC(27)
+
+# LED ring
+light = Neopixel(8, 0, 0, 'GRB')
+white = (233, 224, 201)
 
 
 def button_input():
@@ -67,5 +75,20 @@ def get_motion():
     if motion_sensor.value() == 1:
         return True
     
+    else:
+        return False
+    
+def light_state(state: bool):
+    if state:
+        light.fill(white)
+        light.show()
+    
+    else:
+        light.clear()
+        light.show()
+
+def get_darkness():
+    if photoresitor.read_u16() > 750:
+        return True
     else:
         return False

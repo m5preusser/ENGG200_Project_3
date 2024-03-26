@@ -11,16 +11,24 @@ def main():
     Setup.setup()
     Setup.connect()
     get_time.set_time()
-    print(Hardware.get_temp())
-    print(Hardware.get_humidity())
+    Hardware.light.clear()
+    Hardware.light.show()
 
     while True:
         Hardware.display_text(Hardware.button_input())
         Hardware.display_time()
-        print(Hardware.get_motion())
+        if Hardware.get_darkness():
+            Hardware.light_state(Hardware.get_motion())
+        else:
+            Hardware.light.clear()
+            Hardware.light.show()
         time.sleep(0.1)
-        
+
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except:
+        Hardware.light.clear()
+        Hardware.light.show()
