@@ -1,52 +1,19 @@
 #Logic.py
-from time import sleep
-from ili9341 import Display, color565
-from machine import Pin, SPI
+import Hardware
+from Hardware import button_input, display_text
  
 button_yes = None
 button_no = None
 button_off = None
 path = None
-spi = SPI(1, baudrate=40000000, sck=Pin(14), mosi=Pin(15))
-display = Display(spi, dc=Pin(6), cs=Pin(17), rst=Pin(7))
 temperature = ""
 time = ""
-
-def main(self):
-    
-    button_yes = machine.Pin()
-    button_no = machine.Pin()
-    button_off = machine.Pin()
-
-    question_1()
-    
-def button_input():
-    wait = True
-    response = ""
-    
-    while wait == True:
-
-        if button_yes.value() != 1:
-            wait = False
-            response = "yes"
-        if button_no.value() != 1:
-            wait = False
-            response = "no"
-        if button_off.value() != 1:
-            wait = False
-            response = "off"
-
-    return response
-
-def display_text(text):
-    display.clear()
-    display.draw_text(0,0,text)
 
 
 def question_1():
 
     question = "Nice to talk to you again! Are you feeling well today?"
-    display_text(question)
+    display_text(question, 'middle')
     response = button_input()
 
     if response == "yes":
@@ -62,7 +29,7 @@ def question_2():
 
     if path == "0":
         question = "Glad you're feeling alright! I've been working on some jokes, would you be interested in hearing one?"
-        display_text(question)
+        display_text(question, 'middle')
         response = button_input()
 
         if response == "yes":
@@ -154,6 +121,3 @@ def question_3():
             display_text(terminating_statement)
         else:
             pass
-
-if __name__ == "__main__":
-    main()
