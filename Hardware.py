@@ -20,7 +20,6 @@ off_button = Pin(13, Pin.IN, Pin.PULL_UP)
 spi = SPI(1, baudrate=40000000, sck=Pin(14), mosi=Pin(15))
 display = Display(spi, dc=Pin(6), cs=Pin(2), rst=Pin(7))
 times_new_roman = XglcdFont('Times_New_Roman60x62.c', 34, 36)
-display.clear(color565(255, 255, 255))
 
 
 # Clock
@@ -49,6 +48,16 @@ print(os.listdir('/sd'))
 player = wavePlayer()
 
 def button_input():
+
+    '''
+    takes no argument
+    returns which button is being pressed as a string:
+    'yes' for the yes button
+    'no' for the no button
+    'off' for the off button
+    '' for no button pressed
+    '''
+
     if yes_button.value() == 0:
         print('Yes Button Pressed')
         sleep(0.1)
@@ -68,6 +77,14 @@ def button_input():
         return ''
 
 def display_text(_text, _position: str):
+
+    '''
+    Arguments
+        _text: the text to be display. Does not need to be a string as it gets converted, but needs to able to be converted to a string
+        _position: str. 'top right' 'top left' 'middle'
+        prints 'issue at screen' on error
+    '''
+
     try:
         text = str(_text)
         position = {'top left': (0, 320), 
