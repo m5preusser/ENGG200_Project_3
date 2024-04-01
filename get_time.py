@@ -1,16 +1,19 @@
 import urequests
 import time
 import machine
-
+import Setup
 
 
 def set_time():
     try:
+        print('getting time')
         data = urequests.get('https://timeapi.io/api/Time/current/zone?timeZone=America/Edmonton')
         global hour_offset
         hour_offset = time.localtime()[3]
         global minute_offset
         minute_offset = time.localtime()[4]
+        global second_offset
+        second_offset = time.localtime()[5]
 
         items = data.json().items()
 
@@ -21,16 +24,21 @@ def set_time():
             if key == "minute":
                 global set_minute
                 set_minute = value
+            if key == "seconds":
+                global set_second
+                set_second = value
             
 
     except:
         print('issue getting current time')
-        machine.soft_reset()
     finally:
         data.close()
 
 def hour():
-    return (time.localtime()[3] + set_hour - hour_offset + (time.localtime()[4] + set_minute - minute_offset) // 60) % 24
+    return (time.localtime()[3] + set_hour - hour_offset + (time.localtime()[4] + set_minute - minute_offset + (time.localtime()[5] + set_second - second_offset) // 60) // 60) % 24
     
 def minute():
-    return (time.localtime()[4] + set_minute - minute_offset)%60   
+    return (time.localtime()[4] + set_minute - minute_offset + (time.localtime()[5] + set_second - second_offset) // 60) % 60
+
+def second():
+    return (time.localtime()[5] + set_second - second_offset) % 60  

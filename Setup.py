@@ -22,7 +22,7 @@ def connect():
             print('Waiting for connection...')
             time.sleep(1)
     except KeyboardInterrupt:
-        machine.reset()
+        machine.soft_reset()
     
     if wlan.isconnected():
         print('connected')

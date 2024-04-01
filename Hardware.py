@@ -9,6 +9,7 @@ from dht import DHT11, InvalidChecksum
 from neopixel import Neopixel
 import sdcard
 import os
+from wavePlayer import wavePlayer
 
 # Buttons
 yes_button = Pin(11, Pin.IN, Pin.PULL_UP)
@@ -18,7 +19,7 @@ off_button = Pin(13, Pin.IN, Pin.PULL_UP)
 # Screen
 spi = SPI(1, baudrate=40000000, sck=Pin(14), mosi=Pin(15))
 display = Display(spi, dc=Pin(6), cs=Pin(2), rst=Pin(7))
-times_new_roman = XglcdFont('Times_New_Roman60x62.c', 60, 62)
+times_new_roman = XglcdFont('Times_New_Roman60x62.c', 34, 36)
 
 
 # Clock
@@ -38,11 +39,13 @@ light = Neopixel(8, 0, 0, 'GRB')
 white = (233, 224, 201)
 
 # SD Card reader
-sd = sdcard.SDCard((SPI(0, baudrate=40000000, sck=Pin(2), mosi=Pin(19), miso=Pin(16))), Pin(17))
+sd = sdcard.SDCard((SPI(0, baudrate=60000000, sck=Pin(2), mosi=Pin(19), miso=Pin(16))), Pin(17))
 vfs = os.VfsFat(sd)
 os.mount(sd, '/sd')
 print(os.listdir('/sd'))
 
+# Speaker
+player = wavePlayer()
 
 def button_input():
     if yes_button.value() == 0:
@@ -63,13 +66,12 @@ def button_input():
     else:
         return ''
 
-def display_text(text: str, _position: str):
+def display_text(_text, _position: str):
     try:
-        position = {'top left': (0, 320), 'top right': (0, 0)}
-
-        # print(f'{position[_position][0]}, {position[_position][1]}')
+        text = str(_text)
+        position = {'top left': (0, 320), 'top right': (0, times_new_roman.measure_text(text))}
         display.clear(color565(255, 255, 255))
-        display.draw_text(0, 320, text, times_new_roman, 0, background=color565(255, 255, 255), landscape=True)
+        display.draw_text(position[_position][0], position[_position][1], text, times_new_roman, 0, background=color565(255, 255, 255), landscape=True)
     except:
         print('issue at screen')
         machine.soft_reset()
@@ -86,12 +88,20 @@ def display_time():
         
 
 def get_temp():
-    thermometer.measure()
-    return thermometer.temperature
+    try:
+        thermometer.measure()
+        return thermometer.temperature
+    except:
+        print('issue with temp sensor')
+        return 22.1
 
 def get_humidity():
-    thermometer.measure()
-    return thermometer.humidity
+    try:
+        thermometer.measure()
+        return thermometer.humidity
+    except:
+        print('issue with temp sensor')
+        return 52
 
 def get_motion():
     if motion_sensor.value() == 1:
@@ -115,7 +125,13 @@ def get_darkness():
     else:
         return False
     
-def log(text: str):
-    log = open('/sd/log.txt', 'a')
-    log.write(f'{text}: {get_time.hour}:{get_time.minute}')
-    log.close
+
+def play_file(track):
+    try:
+        print(f'/sd/{track}')
+        player.play(f'/sd/{track}')
+    except:
+        print('issue playing sound')
+        player.close()
+
+    

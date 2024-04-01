@@ -1,28 +1,21 @@
 from machine import Pin, Timer
 import time
-import Hardware
 import Setup
 import get_time
+import machine
 
 
-
-def main():
+def boot():
     print('Main started')
 
     Setup.setup()
     Setup.connect()
     get_time.set_time()
-
-    while True:
-        loop()
-        time.sleep(0.2)
-
+    Hardware.display_text(Hardware.get_temp(), 'top right')
     
 
+
 def loop():
-    print('looping')
-    Hardware.log('looping')
-    Hardware.display_text(Hardware.button_input(), 'top left')
     Hardware.display_time()
 
     if Hardware.get_darkness():
@@ -36,12 +29,19 @@ def loop():
         Hardware.clock.brightness(7)
         Hardware.display.display_on()
 
-    if (get_time.minute() % 60) == 0:
-        pass
+    if (get_time.minute() % 10) == 0 and get_time.second() == 0:
+        Hardware.display_text(Hardware.get_temp(), 'top right')
+
+import Hardware
 
 if __name__ == '__main__':
     try:
-        main()
-    except:
+        boot()
+        while True:
+            loop()
+            time.sleep(0.2)
+    except Exception:
         Hardware.light.clear()
         Hardware.light.show()
+        Hardware.player.stop()
+        # machine.reset()
