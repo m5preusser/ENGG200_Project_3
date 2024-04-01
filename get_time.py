@@ -28,7 +28,6 @@ def set_time():
                 global set_second
                 set_second = value
             
-
     except:
         print('issue getting current time')
     finally:

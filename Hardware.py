@@ -74,7 +74,6 @@ def display_text(_text, _position: str):
         display.draw_text(position[_position][0], position[_position][1], text, times_new_roman, 0, background=color565(255, 255, 255), landscape=True)
     except:
         print('issue at screen')
-        machine.soft_reset()
 
 
 def display_time():

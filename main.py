@@ -11,7 +11,7 @@ def boot():
     Setup.setup()
     Setup.connect()
     get_time.set_time()
-    Hardware.display_text(Hardware.get_temp(), 'top right')
+    Hardware.display_text(f'{Hardware.get_temp()}C', 'top right')
     
 
 
