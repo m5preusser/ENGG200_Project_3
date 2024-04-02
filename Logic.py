@@ -1,5 +1,6 @@
 #Logic.py
 from time import sleep
+import Hardware
 
 path = None
 temperature = ""
