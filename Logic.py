@@ -142,8 +142,8 @@ def question_3():
         if response == "yes":
             temperature = Hardware.get_temp()
             Hardware.display_time()
-            time = get_time()
-            terminating_statement = "It is currently " + time + " and the ambient temperature is " + temperature + "."
+            current_time = get_time()
+            terminating_statement = "It is currently " + current_time + " and the ambient temperature is " + temperature + "."
             # For this one, say "this is the current time and ambient temperature"
             # Name this recording "recording_8"
             Hardware.display_text(terminating_statement, "middle")
