@@ -1,5 +1,5 @@
 #Logic.py
-from time import sleep
+import time
 import get_time
 import Hardware
 
