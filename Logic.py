@@ -1,6 +1,7 @@
 #Logic.py
 from time import sleep
 import get_time
+import Hardware
 
 path = None
 
