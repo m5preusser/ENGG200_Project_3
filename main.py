@@ -32,7 +32,7 @@ def loop():
         Hardware.clock.brightness(7)
         Hardware.display.display_on()
 
-    if Hardware.button_off() == 1:
+    if Hardware.button_input() == 'off':
         Logic.question_1()
     
     # Displays temperature every ten minutes
