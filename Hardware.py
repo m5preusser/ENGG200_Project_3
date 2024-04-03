@@ -90,7 +90,10 @@ def display_text(_text, _position: str):
         position = {'top left': (0, 320), 
                     'top right': (0, times_new_roman.measure_text(text)),
                     'middle': (45, 320)}
-        display.draw_text(position[_position][0], position[_position][1], text, times_new_roman, 0, background=color565(255, 255, 255), landscape=True)
+        if position == 'middle':
+            display.draw_text8x8(position[_position][0], position[_position][1], text, 0, background=color565(255, 255, 255), rotate=90)
+        else:
+            display.draw_text(position[_position][0], position[_position][1], text, times_new_roman, 0, background=color565(255, 255, 255), landscape=True)
     except:
         print('issue at screen')
 
