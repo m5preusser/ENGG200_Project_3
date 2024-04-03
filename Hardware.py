@@ -144,10 +144,17 @@ def get_darkness():
         return False
     
 
-def play_file(track):
+def play_file(track: str):
+
+    '''
+    Argument: the name of the file without the file extension. 
+    File must be saved to the SD card and be a 16 bit, 8000 Sample Rate, mono wav file.
+    To play 'Sample.wav', call 'play_file(Sample)'
+    '''
+
     try:
-        print(f'/sd/{track}')
-        player.play(f'/sd/{track}')
+        print(f'/sd/{track}.wav')
+        player.play(f'/sd/{track}.wav')
     except:
         print('issue playing sound')
         player.close()
