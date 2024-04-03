@@ -9,9 +9,11 @@ def question_1():
 
     Hardware.display_time()
 
-    question = "Nice to talk to you again! Are you feeling well today?"
+    question = "Nice to talk to you again!"
+    question2 = "Are you feeling well today?"
     # Name this recording "recording_1"
     Hardware.display_text(question, "middle")
+    Hardware.dsiplay_text(question2, "middle2")
     Hardware.play_file("recording_1.wav")
     
     waiting = True
@@ -38,10 +40,14 @@ def question_2():
     Hardware.display_time()
 
     if path == "0":
-        question = "Glad you're feeling alright! I've been working on some jokes, would you be interested in hearing one?"
+        question = "Glad you're feeling alright!"
+        question2 = "I've been working on some jokes,"
+        question3 = "would you be interested in hearing one?"
         # Name this recording "recording_2"
 
         Hardware.display_text(question, "middle")
+        Hardware.display_text(question2, "middle2")
+        Hardware.display_text(question3, "middle3")
         Hardware.play_file("recording_2.wav")
 
         waiting = True
@@ -64,10 +70,12 @@ def question_2():
             pass
     
     else:
-        question = "I'm sorry to hear that today's not going great. I'd like to help, are you in any physical pain?"
+        question = "I'm sorry to hear that today's not going great."
+        question2 = "I'd like to help, are you in any physical pain?"
         # Name this recording "recording_3"
 
         Hardware.display_text(question, "middle")
+        Hardware.display_text(question2, "middle2")
         Hardware.play_file("recording_3.wav")
 
         waiting = True
@@ -95,10 +103,16 @@ def question_3():
     Hardware.display_time()
     
     if path == "00":
-        question = "I always like telling jokes, here's one. Why don't skeletons fight each other? Becuase they don't have the guts! Would you like to hear another?"
+        question = "I always like telling jokes, here's one."
+        question2 = "Why don't skeletons fight each other?"
+        question3 = "Because they don't have the guts!"
+        question4 = "Would you like to hear another?"
         # Name this recording "recording_4"
 
         Hardware.display_text(question, "middle")
+        Hardware.display_text(question2, "middle2")
+        Hardware.display_text(question3, "middle3")
+        Hardware.display_text(question4, "middle4")
         Hardware.play_file("recording_4.wav")
 
         waiting = True
@@ -112,22 +126,34 @@ def question_3():
                 waiting = False
 
         if response == "yes":
-            terminating_statement = "What's the last thing to go through a flies head before it hits the fly swatter? Its bum. Thanks for speaking with me today!"
+            terminating_statement = "What's the last thing to go through a"
+            question2 = "flies head before it hits the fly swatter?"
+            question3 = "Its bum. Thanks for speaking with me today!"
             # Name this recording "recording_5"
             Hardware.display_text(terminating_statement, "middle")
+            Hardware.display_text(question2, "middle2")
+            Hardware.display_text(question3, "middle3")
             Hardware.play_file("recording_5.wav")
         elif response == "no":
-            terminating_statement = "That's alright, one joke is enough for today. Thanks for the chat!"
+            terminating_statement = "That's alright, 
+            question2 = "one joke is enough for today."
+            quesiton3 = "Thanks for the chat!"
             # Name this recording "recording_6"
             Hardware.display_text(terminating_statement, "middle")
+            Hardware.display_text(question2, "middle2")
+            Hardware.display_text(question3, "middle3")
             Hardware.play_file("recording_6.wav")
         else:
             pass
     
     elif path == "01":
-        question = "That's alright, sometimes you're not in the mood for jokes. Would you like some current information?"
+        question = "That's alright, sometimes you're"
+        question2 = "not in the mood for jokes."
+        question3 = "Would you like some current information?"
         # Name this recording "recording_7"
         Hardware.display_text(question, "middle")
+        Hardware.display_text(question2, "middle2")
+        Hardware.display_text(question3, "middle3")
         Hardware.play_file("recording_7.wav")
 
         waiting = True
@@ -144,15 +170,17 @@ def question_3():
             temperature = Hardware.get_temp()
             Hardware.display_time()
             current_time = get_time()
-            terminating_statement = "It is currently " + current_time + " and the ambient temperature is " + temperature + "."
+            terminating_statement = "It is currently " + str(current_time) + " and the temperature is " + str(temperature) + "."
             # For this one, say "this is the current time and ambient temperature"
             # Name this recording "recording_8"
             Hardware.display_text(terminating_statement, "middle")
             Hardware.play_file("recording_8.wav")
         elif response == "no":
-            terminating_statement = "I hope I provided some emotional support today. It's always good to talk to someone."
+            terminating_statement = "I hope I provided some emotional support today."
+            question2 = "It's always good to talk to someone."
             # Name this recording "recording_9"
             Hardware.display_text(terminating_statement, "middle")
+            Hardware.display_text(question2, "middle2")
             Hardware.play_file("recording_9.wav")
         else:
             pass
@@ -175,23 +203,33 @@ def question_3():
 
         if response == "yes":
             temperature = Hardware.get_temp()
-            terminating_statement = "The current ambient temperature is " + temperature + " °C. High temperatures can contribute to headahches, you may want to call a nurse to lower the temperature in your room."
+            terminating_statement = "The current temperature is " + temperature + " °C."
+            question2 = "High temperatures can contribute to headahches,"
+            question3 = "you can call a nurse to lower the temp in the room."
             # Name this recording "recording_11"
             Hardware.display_text(terminating_statement, "middle")
+            Hardware.display_text(question2, "middle2")
+            Hardware.display_text(question3, "middle3")
             Hardware.play_file("recording_11.wav")
 
         elif response == "no":
-            terminating_statement = "If you're in any kind of significant anguish, I would highly reccomend calling a nurse. I am unfortunately limited in my ability to help physically."
+            terminating_statement = "If you're in any kind of significant anguish,"
+            question2 = "I would highly reccomend calling a nurse."
+            question3  = "I am limited in my ability to help physically."
             # Name this recording "recording_12"
             Hardware.display_text(terminating_statement, "middle")
+            Hardware.display_text(question2, "middle2")
+            Hardware.display_text(question3, "middle3")
             Hardware.play_file("recording_12.wav")
         else:
             pass
 
     elif path == "11":
-        question = "That's good to hear at least. Are you in any emotional anguish?"
+        question = "That's good to hear at least."
+        question2 = "Are you in any emotional anguish?"
         # Name this recording "recording_13"
         Hardware.display_text(question, "middle")
+        Hardware.display_text(question2, "middle2")
         Hardware.play_file("recording_13.wav")
 
         waiting = True
@@ -205,14 +243,24 @@ def question_3():
                 waiting = False
 
         if response == "yes":
-            terminating_statement = "Remember to drink and eat enough food and water throughout your day. That will help you keep your energy up!"
+            terminating_statement = "Remember to drink and eat enough food 
+            question2 = "and water throughout your day."
+            question3 = "That will help you keep your energy up!"
             # Name this recording "recording_14"
             Hardware.display_text(terminating_statement, "middle")
+            Hardware.display_text(question2, "middle2")
+            Hardware.display_text(question3, "middle3")
             Hardware.play_file("recording_14.wav")
         elif response == "no":
-            terminating_statement = "I won't be able to help you with much else. If you need something, I would reccomend calling a nurse. If not, try calling some family, social interaction can help your mental health."
+            terminating_statement = "I won't be able to help you with much else."
+            quesiton2 = "If you need something, you should call a nurse."
+            question3 = "If not, try calling some family,"
+            quesiton4 = "social interaction can help your mental health."
             # Name this recording "recording_15"
             Hardware.display_text(terminating_statement, "middle")
+            Hardware.display_text(question2, "middle2")
+            Hardware.display_text(question3, "middle3")
+            Hardware.display_text(question4, "middle4")
             Hardware.play_file("recording_15.wav")
         else:
             pass
