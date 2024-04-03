@@ -95,7 +95,7 @@ def display_text(_text, _position: str):
                     'middle4': (153, 320)}
 
         #display.draw_text(position[_position][0], position[_position][1], text, times_new_roman, 0, background=color565(255, 255, 255), landscape=True)
-        display.draw_text8x8(position[_position][0], position[_position][1], text, background=color565(255,255,255))
+        display.draw_text8x8(position[_position][0], position[_position][1], text, background=color565(255,255,255), rotate=90)
     except:
         print('issue at screen')
 
