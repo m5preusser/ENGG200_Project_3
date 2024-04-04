@@ -19,7 +19,7 @@ off_button = Pin(13, Pin.IN, Pin.PULL_UP)
 # Screen
 spi = SPI(1, baudrate=40000000, sck=Pin(14), mosi=Pin(15))
 display = Display(spi, dc=Pin(6), cs=Pin(2), rst=Pin(7))
-times_new_roman = XglcdFont('Times_New_Roman60x62.c', 34, 36)
+times_new_roman = XglcdFont('Times_New_Roman19x20.c', 34, 36)
 
 
 # Clock
@@ -87,17 +87,32 @@ def display_text(_text, _position: str):
 
     try:
         text = str(_text)
+        lines = split_text(text)
         position = {'top left': (0, 320), 
                     'top right': (0, times_new_roman.measure_text(text)),
-                    'middle': (45, 320),
-                    'middle2': (81, 320),
-                    'middle3': (117,320), 
-                    'middle4': (153, 320)}
-
-        #display.draw_text(position[_position][0], position[_position][1], text, times_new_roman, 0, background=color565(255, 255, 255), landscape=True)
-        display.draw_text8x8(position[_position][0], position[_position][1], text, background=color565(255,255,255), rotate=90)
+                    'middle': (45, 320)}
+        for line in lines:
+            display.draw_text(position[_position][0], position[_position][1], line, times_new_roman, 0, background=color565(255, 255, 255), landscape=True)
+            # display.draw_text8x8(position[_position][0], position[_position][1], text, background=color565(255,255,255), rotate=90)
     except:
         print('issue at screen')
+
+def split_text(text: str):
+    sentence = text.split(' ')
+    new_text = ['']
+
+    i = 0
+    for word in sentence:
+        if times_new_roman.measure_text(f'{new_text[i]} {word}') < 320:
+            if new_text[i] == '':
+                new_text[i] = word
+            else:
+                new_text[i] = f'{new_text[i]} {word}'
+        else:
+            i = i + 1
+            new_text.append(word)
+
+    return new_text
 
 
 def display_time():
