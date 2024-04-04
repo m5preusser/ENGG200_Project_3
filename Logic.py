@@ -13,7 +13,7 @@ def question_1():
     question2 = "Are you feeling well today?"
     # Name this recording "recording_1"
     Hardware.display_text(question, "middle")
-    Hardware.dsiplay_text(question2, "middle2")
+    Hardware.display_text(question2, "middle2")
     Hardware.play_file("recording_1.wav")
     
     waiting = True
@@ -51,7 +51,6 @@ def question_2():
         Hardware.play_file("recording_2.wav")
 
         waiting = True
-        response = ""
         while waiting == True:
             response = Hardware.button_input()
             if response == "":
@@ -135,7 +134,7 @@ def question_3():
             Hardware.display_text(question3, "middle3")
             Hardware.play_file("recording_5.wav")
         elif response == "no":
-            terminating_statement = "That's alright, 
+            terminating_statement = "That's alright," 
             question2 = "one joke is enough for today."
             quesiton3 = "Thanks for the chat!"
             # Name this recording "recording_6"
@@ -243,7 +242,7 @@ def question_3():
                 waiting = False
 
         if response == "yes":
-            terminating_statement = "Remember to drink and eat enough food 
+            terminating_statement = "Remember to drink and eat enough food" 
             question2 = "and water throughout your day."
             question3 = "That will help you keep your energy up!"
             # Name this recording "recording_14"

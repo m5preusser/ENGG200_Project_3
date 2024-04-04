@@ -53,5 +53,5 @@ if __name__ == '__main__':
         print('program end')
         Hardware.light.clear()
         Hardware.light.show()
-        Hardware.player.stop()
+        # Hardware.player.stop()
         # machine.reset()
