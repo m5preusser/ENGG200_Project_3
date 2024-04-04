@@ -19,7 +19,7 @@ off_button = Pin(13, Pin.IN, Pin.PULL_UP)
 # Screen
 spi = SPI(1, baudrate=40000000, sck=Pin(14), mosi=Pin(15))
 display = Display(spi, dc=Pin(6), cs=Pin(2), rst=Pin(7))
-times_new_roman = XglcdFont('Times_New_Roman19x20.c', 34, 36)
+times_new_roman = XglcdFont('Times_New_Roman29x31.c', 22, 23)
 
 
 # Clock
@@ -86,14 +86,21 @@ def display_text(_text, _position: str):
     '''
 
     try:
+        display.clear(color=color565(255, 255, 255))
+        global margin
+        margin = 10
+        line_offset = 20
         text = str(_text)
         lines = split_text(text)
-        position = {'top left': (0, 320), 
-                    'top right': (0, times_new_roman.measure_text(text)),
-                    'middle': (45, 320)}
+        position = {'top left': (0 + margin, 320 - margin), 
+                    'top right': (0 + margin, times_new_roman.measure_text(text) + margin),
+                    'middle': (margin, 320 - margin)}
+
+        i = 0
         for line in lines:
-            display.draw_text(position[_position][0], position[_position][1], line, times_new_roman, 0, background=color565(255, 255, 255), landscape=True)
+            display.draw_text((position[_position][0] + line_offset * i), position[_position][1], line, times_new_roman, 0, background=color565(255, 255, 255), landscape=True)
             # display.draw_text8x8(position[_position][0], position[_position][1], text, background=color565(255,255,255), rotate=90)
+            i += 1
     except:
         print('issue at screen')
 
@@ -103,7 +110,7 @@ def split_text(text: str):
 
     i = 0
     for word in sentence:
-        if times_new_roman.measure_text(f'{new_text[i]} {word}') < 320:
+        if times_new_roman.measure_text(f'{new_text[i]} {word}') < (320 - margin):
             if new_text[i] == '':
                 new_text[i] = word
             else:
@@ -158,7 +165,7 @@ def light_state(state: bool):
         light.show()
 
 def get_darkness():
-    if photoresitor.read_u16() > 750:
+    if photoresitor.read_u16() > 800:
         return True
     else:
         return False

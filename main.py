@@ -14,7 +14,7 @@ def boot():
     Setup.setup()                                                   # Connect to internet
     Setup.connect()                                                 # Connect to internet
     get_time.set_time()                                             # Get current time
-    Hardware.display_text(f'{Hardware.get_temp()}C', 'top left')    # Get temperature and display in top right of the screen
+    Hardware.display_text(f'{Hardware.get_temp()} C', 'top right')   # Get temperature and display in top right of the screen
 
 
 # runs every 0.2 seconds
@@ -34,10 +34,12 @@ def loop():
 
     if Hardware.button_input() == 'off':
         Logic.question_1()
+        Hardware.display_text(f'{Hardware.get_temp()} C', 'top right')
 
     # Displays temperature every ten minutes
     if (get_time.minute() % 10) == 0 and get_time.second() == 0:
-        Hardware.display_text(Hardware.get_temp(), 'top left')
+        Hardware.display_text(f'{Hardware.get_temp()} C', 'top right')
+        get_time.set_time()
     
 
 import Hardware
@@ -54,4 +56,4 @@ if __name__ == '__main__':
         Hardware.light.clear()
         Hardware.light.show()
         Hardware.player.stop()
-        machine.reset()
+        # machine.reset()

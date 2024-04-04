@@ -81,7 +81,7 @@ def question_2(paath):
             paath = "10"
             question_3(paath)
         elif response == "no":
-            paath_level_1 = "11"
+            paath = "11"
             question_3(paath)
         else:
             pass
@@ -111,12 +111,12 @@ def question_3(paath):
             terminating_statement = "What's the last thing to go through a flies head before it hits the fly swatter? Its bum. Thanks for speaking with me today!"
             # Name this recording "recording_5"
             Hardware.display_text(terminating_statement, "middle")
-            Hardware.play_file("recording_5.wav")
+            Hardware.play_file("recording_5.wav")   
         elif response == "no":
             terminating_statement = "That's alright, one joke is enough for today.Thanks for the chat!"
             # Name this recording "recording_6"
             Hardware.display_text(terminating_statement, "middle")
-            Hardware.play_file("recording_6.wav")
+            Hardware.play_file("recording_6.wav")           
         else:
             pass
     
@@ -140,7 +140,7 @@ def question_3(paath):
             temperature = Hardware.get_temp()
             Hardware.display_time()
             current_time = get_time()
-            terminating_statement = "It is currently " + str(current_time) + " and the temperature is " + str(temperature) + "."
+            terminating_statement = f"It is currently {current_time} and the temperature is {temperature}."
             # For this one, say "this is the current time and ambient temperature"
             # Name this recording "recording_8"
             Hardware.display_text(terminating_statement, "middle")
@@ -171,16 +171,18 @@ def question_3(paath):
 
         if response == "yes":
             temperature = Hardware.get_temp()
-            terminating_statement = "The current temperature is " + temperature + " °C. High temperatures can contribute to headahches, I reccomend you call a nurse to lower the temp in the room."
+            terminating_statement = f'The current temperature is {temperature} C. High temperatures can contribute to headahches, I reccomend you call a nurse to lower the temp in the room.'
             # Name this recording "recording_11"
             Hardware.display_text(terminating_statement, "middle")
             Hardware.play_file("recording_11.wav")
+            
 
         elif response == "no":
             terminating_statement = "If you're in any kind of significant anguish, I would highly reccomend calling a nurse. I am unfortunately limited in my ability to help physically."
             # Name this recording "recording_12"
             Hardware.display_text(terminating_statement, "middle")
             Hardware.play_file("recording_12.wav")
+            
         else:
             pass
 
@@ -205,10 +207,12 @@ def question_3(paath):
             # Name this recording "recording_14"
             Hardware.display_text(terminating_statement, "middle")
             Hardware.play_file("recording_14.wav")
+            
         elif response == "no":
             terminating_statement = "I won't be able to help you with much else. If you need something, you should call a nurse. If not, try calling some family, social interaction can help your mental health."
             # Name this recording "recording_15"
             Hardware.display_text(terminating_statement, "middle")
             Hardware.play_file("recording_15.wav")
+            
         else:
             pass

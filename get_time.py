@@ -5,6 +5,7 @@ import Setup
 
 
 def set_time():
+    global got_time 
     try:
         print('getting time')
         data = urequests.get('https://timeapi.io/api/Time/current/zone?timeZone=America/Edmonton')
@@ -29,13 +30,23 @@ def set_time():
                 set_second = value
         
         print(f'{hour()}:{minute()}:{second()}')
+        got_time = True
+
     except:
         print('issue getting current time')
         set_hour = 0
         set_minute = 0
         set_second = 0
+        hour_offset = 0
+        minute_offset = 0
+        second_offset = 0
+        got_time = False
+
     finally:
-        data.close()
+        try:
+            data.close()
+        except:
+            print('cant close api')
 
 def hour():
     return (time.localtime()[3] + set_hour - hour_offset + (time.localtime()[4] + set_minute - minute_offset + (time.localtime()[5] + set_second - second_offset) // 60) // 60) % 24
