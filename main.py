@@ -15,6 +15,7 @@ def boot():
     Setup.connect()                                                 # Connect to internet
     get_time.set_time()                                             # Get current time
     Hardware.display_text(f'{Hardware.get_temp()}C', 'top left')   # Get temperature and display in top right of the screen
+    #Hardware.display_text(f'{20.5}C', 'top left')   #bullshit temp. (works!!)
 
 
 # runs every 0.2 seconds
@@ -22,20 +23,21 @@ def loop():
     Hardware.display_time()
 
     # checks to see if it is dark
-    if Hardware.get_darkness():
+    if Hardware.get_darkness():                         #if bugging try putting light on photoresistor
         Hardware.light_state(Hardware.get_motion())
         Hardware.clock.brightness(1)
-        Hardware.display.display_off()
     else:
         Hardware.light.clear()
         Hardware.light.show()
         Hardware.clock.brightness(7)
         Hardware.display.display_on()
+        print('Comner small penis')
 
     if Hardware.button_input() == 'off':
+        print('nuts')
         Logic.question_1()
-    
-    # Displays temperature every ten minutes
+        print('balls')
+     #Displays temperature every ten minutes
     if (get_time.minute() % 10) == 0 and get_time.second() == 0:
         Hardware.display_text(Hardware.get_temp(), 'top left')
     
@@ -53,5 +55,5 @@ if __name__ == '__main__':
         print('program end')
         Hardware.light.clear()
         Hardware.light.show()
-        # Hardware.player.stop()
-        # machine.reset()
+        Hardware.player.stop()
+        machine.reset()
