@@ -6,7 +6,7 @@ import Hardware
 global paath
 paath = ""
 
-def question_1():
+def question_1(paath):
     print("question 1")
     Hardware.display_time()
 
@@ -37,7 +37,7 @@ def question_1():
     else:
         pass
 
-def question_2():
+def question_2(paath):
     print("question 2")
     Hardware.display_time()
 
@@ -100,7 +100,7 @@ def question_2():
             pass
 
 
-def question_3():
+def question_3(paath):
     print("question 3")
     Hardware.display_time()
     
