@@ -6,7 +6,7 @@ import Hardware
 path = None
 
 def question_1():
-
+    print("question 1")
     Hardware.display_time()
 
     question = "Nice to talk to you again!"
@@ -15,7 +15,8 @@ def question_1():
     Hardware.display_text(question, "middle")
     Hardware.display_text(question2, "middle2")
     Hardware.play_file("recording_1.wav")
-    
+
+    print("getting button input")
     waiting = True
     response = ""
     while waiting == True:
@@ -36,7 +37,7 @@ def question_1():
         pass
 
 def question_2():
-
+    print("question 2")
     Hardware.display_time()
 
     if path == "0":
@@ -50,6 +51,7 @@ def question_2():
         Hardware.display_text(question3, "middle3")
         Hardware.play_file("recording_2.wav")
 
+        print("getting button input")
         waiting = True
         while waiting == True:
             response = Hardware.button_input()
@@ -76,7 +78,7 @@ def question_2():
         Hardware.display_text(question, "middle")
         Hardware.display_text(question2, "middle2")
         Hardware.play_file("recording_3.wav")
-
+        print("getting button input")
         waiting = True
         response = ""
         while waiting == True:
@@ -98,7 +100,7 @@ def question_2():
 
 
 def question_3():
-
+    print("question 3")
     Hardware.display_time()
     
     if path == "00":
