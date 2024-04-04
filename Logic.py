@@ -3,7 +3,8 @@ import time
 import get_time
 import Hardware
 
-path = None
+global paath
+paath = ""
 
 def question_1():
     print("question 1")
@@ -28,10 +29,10 @@ def question_1():
             waiting = False
 
     if response == "yes":
-        path = "0"
+        paath = "0"
         question_2()
     elif response == "no":
-        path = "1"
+        paath = "1"
         question_2()
     else:
         pass
@@ -40,7 +41,7 @@ def question_2():
     print("question 2")
     Hardware.display_time()
 
-    if path == "0":
+    if paath == "0":
         question = "Glad you're feeling alright!"
         question2 = "I've been working on some jokes,"
         question3 = "would you be interested in hearing one?"
@@ -62,10 +63,10 @@ def question_2():
                 waiting = False
 
         if response == "yes":
-            path = "00"
+            paath = "00"
             question_3()
         elif response == "no":
-            path = "01"
+            paath = "01"
             question_3()
         else:
             pass
@@ -90,10 +91,10 @@ def question_2():
                 waiting = False
 
         if response == "yes":
-            path = "10"
+            paath = "10"
             question_3()
         elif response == "no":
-            path_level_1 = "11"
+            paath_level_1 = "11"
             question_3()
         else:
             pass
@@ -103,7 +104,7 @@ def question_3():
     print("question 3")
     Hardware.display_time()
     
-    if path == "00":
+    if paath == "00":
         question = "I always like telling jokes, here's one."
         question2 = "Why don't skeletons fight each other?"
         question3 = "Because they don't have the guts!"
@@ -147,7 +148,7 @@ def question_3():
         else:
             pass
     
-    elif path == "01":
+    elif paath == "01":
         question = "That's alright, sometimes you're"
         question2 = "not in the mood for jokes."
         question3 = "Would you like some current information?"
@@ -186,7 +187,7 @@ def question_3():
         else:
             pass
 
-    elif path == "10":
+    elif paath == "10":
         question = "Would you describe your pain as a headache?"
         # Name this recording "recording_10"
         Hardware.display_text(question, "middle")
@@ -225,7 +226,7 @@ def question_3():
         else:
             pass
 
-    elif path == "11":
+    elif paath == "11":
         question = "That's good to hear at least."
         question2 = "Are you in any emotional anguish?"
         # Name this recording "recording_13"

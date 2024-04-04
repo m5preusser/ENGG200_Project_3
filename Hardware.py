@@ -107,7 +107,7 @@ def display_time():
         clock.numbers(current_hour, current_minute)
     except:
         print('issue at clock')
-        machine.soft_reset()
+        # machine.soft_reset()
         
 
 def get_temp():

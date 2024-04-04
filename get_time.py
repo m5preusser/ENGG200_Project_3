@@ -31,6 +31,9 @@ def set_time():
         print(f'{hour()}:{minute()}:{second()}')
     except:
         print('issue getting current time')
+        set_hour = 0
+        set_minute = 0
+        set_second = 0
     finally:
         data.close()
 
