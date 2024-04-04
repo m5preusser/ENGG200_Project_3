@@ -1,15 +1,16 @@
 #Logic.py
 import time
-import get_time
+#import get_time
 import Hardware
 
-global paath
-paath = ""
+#global paath
+#paath = ""
 
-def question_1(paath):
+
+def question_1():
     print("question 1")
     Hardware.display_time()
-
+    paath = None
     question = "Nice to talk to you again!"
     question2 = "Are you feeling well today?"
     # Name this recording "recording_1"
@@ -30,17 +31,17 @@ def question_1(paath):
 
     if response == "yes":
         paath = "0"
-        question_2()
+        question_2(paath)
     elif response == "no":
         paath = "1"
-        question_2()
+        question_2(paath)
     else:
         pass
 
 def question_2(paath):
     print("question 2")
     Hardware.display_time()
-
+    paath = paath
     if paath == "0":
         question = "Glad you're feeling alright!"
         question2 = "I've been working on some jokes,"
@@ -64,10 +65,10 @@ def question_2(paath):
 
         if response == "yes":
             paath = "00"
-            question_3()
+            question_3(paath)
         elif response == "no":
             paath = "01"
-            question_3()
+            question_3(paath)
         else:
             pass
     
@@ -92,10 +93,10 @@ def question_2(paath):
 
         if response == "yes":
             paath = "10"
-            question_3()
+            question_3(paath)
         elif response == "no":
             paath_level_1 = "11"
-            question_3()
+            question_3(paath)
         else:
             pass
 
@@ -103,7 +104,7 @@ def question_2(paath):
 def question_3(paath):
     print("question 3")
     Hardware.display_time()
-    
+    paath = paath
     if paath == "00":
         question = "I always like telling jokes, here's one."
         question2 = "Why don't skeletons fight each other?"
